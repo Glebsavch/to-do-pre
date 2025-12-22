@@ -79,10 +79,15 @@ items.forEach(function(item) {
 
 formElement.addEventListener("submit", function(evt) {
     evt.preventDefault();
-		const taskText = inputElement.value;
-		const taskElement = createItem(taskText);
-		listElement.prepend(taskElement);
-		items = getTasksFromDOM(); 
+    const taskText = inputElement.value.trim();
+    
+    if (taskText === "") {
+        return;
+    }
+    
+    const taskElement = createItem(taskText);
+    listElement.prepend(taskElement);
+    items = getTasksFromDOM(); 
     saveTasks(items);
-		formElement.reset();
+    formElement.reset();
 });
